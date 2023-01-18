@@ -8,23 +8,18 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args)  {
 
-        Cliente cliente1 = new Cliente("Maria", 10);
-        Cliente cliente2 = new Cliente("Pedro", 10);
-        Cliente cliente3 = new Cliente("Carlos", 10);
-        Cliente cliente4 = new Cliente("Sara", 10);
-
         Cliente clientes[] = new Cliente[4];
-        clientes[0] = cliente1;
-        clientes[1] = cliente2;
-        clientes[2] = cliente3;
-        clientes[3]= cliente4;
-
+        clientes[0] = new Cliente("Maria", 10);
+        clientes[1] = new Cliente("Pedro", 10);
+        clientes[2] = new Cliente("Carlos", 10);
+        clientes[3]= new Cliente("Sara", 10);
 
         Scanner sc = new Scanner(System.in);
+
+
         Boolean controlador = true;
 
         do {
-
             System.out.println("*********** Menú principal ********************");
             System.out.println("a. Añadir un nuevo cliente");
             System.out.println("b. Borrar un cliente");
@@ -35,34 +30,84 @@ public class Main {
             System.out.println("Ingrese una opción: ");
 
             String opcion = sc.nextLine();
+            Integer valor;
             switch (opcion) {
                 case "a":
-                    try{
+                    try {
+                        if (clientes.length >= 10) {
+                            System.out.println("Debe borrar un cliente antes de poder ingresar uno nuevo");
+                            throw new Exception();
+                        }
                         System.out.println("Ingrese el nombre del cliente: ");
                         String nombre = sc.nextLine();
-                        if (Tools.validadorNombre(nombre)){
+                        if (Tools.validadorNombre(nombre)) {
                             System.out.println("Ingrese la cedula del cliente: ");
                             Integer cedula = sc.nextInt();
                             System.out.println("Cliente guardado");
                             clientes = Arrays.copyOf(clientes, clientes.length + 1);
                             clientes[clientes.length - 1] = new Cliente(nombre, cedula);
-                            sc.nextLine();
-                        }else{
+
+                        } else {
                             throw new Exception();
                         }
-                    }catch (Exception e){
+                    } catch (Exception e) {
                         System.out.println("No es posible usar el valor");
-                        sc.nextLine();
                     }
                     break;
 
                 case "b":
+                    try{
+
+                        System.out.println("Lista de clientes");
+                        for (int i = 0; i < clientes.length; i++) {
+                            System.out.println((i+1) + ". nombre: " + clientes[i].getNombre() +
+                                    " cedula: " + clientes[i].getCedula());
+                        }
+                        System.out.println("Ingrese la posición del cliente a borrar: ");
+                        valor = sc.nextInt() - 1;
+
+                        if (valor >= 0 && valor <= clientes.length - 1) {
+                            for (int i = valor; i < clientes.length - 1; i++) {
+                                clientes[i] = clientes[i + 1];
+                            }
+                            if (clientes.length > 4){
+                                clientes = Arrays.copyOf(clientes, clientes.length - 1);
+                            }else {
+                                clientes[clientes.length - 1] = null;
+                            }
+                            System.out.println("Cantidad de clientes registrados: " + clientes.length);
+
+                        }else {
+                            throw new Exception();
+                        }
+                    }catch(Exception e){
+                        System.out.println("Opción invalida");
+                    }
+
                     break;
 
                 case "c":
+                    try{
+                        System.out.println("Ingrese el número de cedula del cliente a buscar: ");
+                        Integer cedula = sc.nextInt();
+                        for (int i = 0; i < clientes.length; i++) {
+                            if (clientes[i].getCedula() == cedula) {
+                                System.out.println("El Cliente sen encuentra en la posición: " + (i+1) + ". el cliente se llama " + clientes[i].getNombre() +
+                                        " y su cédula es: " + clientes[i].getCedula());
+                                break;
+                            }
+                        }
+                        System.out.println("No se encontro el cliente");
+                    }catch (Exception e){
+                        System.out.println("Ingrese un valor correcto");
+                    }
                     break;
 
                 case "d":
+                    for (int i = 0; i < clientes.length; i++) {
+                        System.out.println("Cliente número: " + (i+1) + ". el cliente se llama " + clientes[i].getNombre() +
+                                " y su cédula es: " + clientes[i].getCedula());
+                    }
                     break;
 
                 case "e":
@@ -72,7 +117,7 @@ public class Main {
                     System.out.println("Opción inválida");
                     break;
             }
-            //sc.close();
+
         }while(controlador);
 
         System.out.println("El programa ha finalizado");

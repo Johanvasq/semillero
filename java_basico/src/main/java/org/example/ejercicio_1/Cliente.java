@@ -27,4 +27,12 @@ public class Cliente {
     public void setCedula(Integer cedula) {
         this.cedula = cedula;
     }
+
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "nombre = '" + nombre + '\'' +
+                ", cedula = " + cedula +
+                '}';
+    }
 }
