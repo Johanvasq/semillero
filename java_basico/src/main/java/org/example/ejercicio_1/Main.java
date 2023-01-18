@@ -16,6 +16,7 @@ public class Main {
 
         Scanner sc = new Scanner(System.in);
 
+        String opcion;
 
         Boolean controlador = true;
 
@@ -29,27 +30,23 @@ public class Main {
             System.out.println("***********************************************");
             System.out.println("Ingrese una opción: ");
 
-            String opcion = sc.nextLine();
-            Integer valor;
+            opcion = sc.nextLine();
+
             switch (opcion) {
                 case "a":
                     try {
-                        if (clientes.length >= 10) {
+                        if (clientes.length == 10) {
                             System.out.println("Debe borrar un cliente antes de poder ingresar uno nuevo");
                             throw new Exception();
                         }
-                        System.out.println("Ingrese el nombre del cliente: ");
-                        String nombre = sc.nextLine();
-                        if (Tools.validadorNombre(nombre)) {
-                            System.out.println("Ingrese la cedula del cliente: ");
-                            Integer cedula = sc.nextInt();
-                            System.out.println("Cliente guardado");
+                        Cliente cliente = Tools.guardarCliente();
+                        if (cliente != null) {
                             clientes = Arrays.copyOf(clientes, clientes.length + 1);
-                            clientes[clientes.length - 1] = new Cliente(nombre, cedula);
-
+                            clientes[clientes.length - 1] = cliente;
                         } else {
                             throw new Exception();
                         }
+
                     } catch (Exception e) {
                         System.out.println("No es posible usar el valor");
                     }
@@ -64,7 +61,8 @@ public class Main {
                                     " cedula: " + clientes[i].getCedula());
                         }
                         System.out.println("Ingrese la posición del cliente a borrar: ");
-                        valor = sc.nextInt() - 1;
+                        Integer valor = Tools.scannerInt() - 1;
+                        if (valor == null){throw new Exception();}
 
                         if (valor >= 0 && valor <= clientes.length - 1) {
                             for (int i = valor; i < clientes.length - 1; i++) {
@@ -89,9 +87,10 @@ public class Main {
                 case "c":
                     try{
                         System.out.println("Ingrese el número de cedula del cliente a buscar: ");
-                        Integer cedula = sc.nextInt();
+                        Integer valor = Tools.scannerInt();
+                        if (valor == null){throw new Exception();}
                         for (int i = 0; i < clientes.length; i++) {
-                            if (clientes[i].getCedula() == cedula) {
+                            if (clientes[i].getCedula() == valor) {
                                 System.out.println("El Cliente sen encuentra en la posición: " + (i+1) + ". el cliente se llama " + clientes[i].getNombre() +
                                         " y su cédula es: " + clientes[i].getCedula());
                                 break;
@@ -105,9 +104,13 @@ public class Main {
 
                 case "d":
                     for (int i = 0; i < clientes.length; i++) {
-                        System.out.println("Cliente número: " + (i+1) + ". el cliente se llama " + clientes[i].getNombre() +
-                                " y su cédula es: " + clientes[i].getCedula());
+                        if (clientes[i]!= null) {
+                            System.out.println("Cliente número: " + (i+1) + ". el cliente se llama " + clientes[i].getNombre() +
+                                    " y su cédula es: " + clientes[i].getCedula());
+                        }
                     }
+
+
                     break;
 
                 case "e":
