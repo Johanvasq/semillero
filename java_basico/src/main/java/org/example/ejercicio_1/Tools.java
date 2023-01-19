@@ -6,7 +6,8 @@ import java.util.Scanner;
 public class Tools {
 
     public static Boolean validadorNombre(String nombre) {
-        boolean esNumero = (nombre != null && !nombre.matches("[0-9]+") && nombre.matches("[a-z]+"));
+        boolean esNumero = (nombre != null && !nombre.matches("[0-9]+")
+                && nombre.matches("[a-z]+"));
         return esNumero;
     }
 
@@ -14,13 +15,13 @@ public class Tools {
         Scanner sc  = new Scanner(System.in);
         try{
             System.out.println("Ingrese el nombre del cliente: ");
-            String nombre = sc.nextLine();
+            String nombre = sc.nextLine().toLowerCase();
             if (Tools.validadorNombre(nombre)) {
                 System.out.println("Ingrese la cedula del cliente: ");
                 Integer cedula = Integer.parseInt(sc.nextLine());
                 System.out.println("Cliente guardado");
-                Cliente guardado = new Cliente(nombre, cedula);
-                return guardado;
+                Cliente clienteGuardado = new Cliente(nombre, cedula);
+                return clienteGuardado;
             }else {
                 throw new Exception();
             }
