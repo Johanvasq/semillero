@@ -1,11 +1,9 @@
 package org.example.ejercicio_1;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
-public class Main {
+public class MainEjercicio1 {
     public static void main(String[] args)  {
 
         Cliente clientes[] = new Cliente[4];
@@ -16,7 +14,7 @@ public class Main {
 
         Scanner sc = new Scanner(System.in);
 
-        String opcion;
+
 
         Boolean controlador = true;
 
@@ -30,7 +28,7 @@ public class Main {
             System.out.println("***********************************************");
             System.out.println("Ingrese una opción: ");
 
-            opcion = sc.nextLine();
+            String opcion = sc.nextLine();
 
             switch (opcion) {
                 case "a":
@@ -115,6 +113,7 @@ public class Main {
 
                 case "e":
                     controlador = false;
+                    System.out.println("Ejecución finalizada");
                     break;
                 default:
                     System.out.println("Opción inválida");
