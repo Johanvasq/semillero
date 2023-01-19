@@ -43,7 +43,7 @@ public class MenuProducto {
             case "b":
                 try {
                     System.out.println("Ingrese el nombre del producto a eliminar: ");
-                    String nombre = sc.next();
+                    String nombre = sc.next().toLowerCase();
                     if (!nombre.isEmpty()) {
                         productos.removeIf(p -> p.getNombre().equals(nombre));
                         return productos;
