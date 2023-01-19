@@ -11,7 +11,10 @@ import java.util.Scanner;
 
 public class MenuCliente {
 
-    public static ArrayList<ClienteEj3> menuCliente(ArrayList<ClienteEj3> clientes){
+    public static ArrayList<ClienteEj3> menuCliente(
+            ArrayList<ClienteEj3> clientes,
+            ArrayList<Producto> productos
+    ){
 
         Scanner sc = new Scanner(System.in);
 
@@ -25,7 +28,7 @@ public class MenuCliente {
         System.out.println("***********************************************");
         System.out.println("Ingrese una opción: ");
 
-        String opcion = sc.nextLine();
+        String opcion = sc.next();
 
         switch (opcion) {
             case "a":
@@ -52,7 +55,7 @@ public class MenuCliente {
                                 " cédula: " + clientes.get(i).getCedula());
                     }
                     System.out.println("Ingrese el número de la cédula que desea borrar");
-                    Integer valor = Integer.parseInt(sc.nextLine());
+                    Integer valor = Integer.parseInt(sc.next());
                     Integer tamaño = clientes.size();
                     for (ClienteEj3 c : clientes) {
                         if (c.getCedula() == valor) {
@@ -74,7 +77,7 @@ public class MenuCliente {
             case "c":
                 try{
                     System.out.println("Ingrese el número de cedula del cliente a buscar: ");
-                    Integer valor = Integer.parseInt(sc.nextLine());
+                    Integer valor = Integer.parseInt(sc.next());
 
                     for (int i = 0; i < clientes.size(); i++) {
                         if (clientes.get(i).getCedula() == valor) {

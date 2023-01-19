@@ -15,7 +15,7 @@ public class Tools {
         Scanner sc  = new Scanner(System.in);
         try{
             System.out.println("Ingrese el nombre del cliente: ");
-            String nombre = sc.nextLine().toLowerCase();
+            String nombre = sc.next().toLowerCase();
             if (Tools.validadorNombre(nombre)) {
                 System.out.println("Ingrese la cedula del cliente: ");
                 Integer cedula = Integer.parseInt(sc.nextLine());
@@ -33,7 +33,7 @@ public class Tools {
     public static Integer scannerInt(){
         Scanner sc  = new Scanner(System.in);
         try{
-            Integer i = sc.nextInt();
+            Integer i = Integer.parseInt(sc.next());
             return i;
         }catch (Exception e){
             return null;

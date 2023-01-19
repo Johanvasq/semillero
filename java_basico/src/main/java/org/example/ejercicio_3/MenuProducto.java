@@ -18,14 +18,41 @@ public class MenuProducto {
         System.out.println("***********************************************");
         System.out.println("Ingrese una opción: ");
 
-        String opcion = sc.nextLine();
+        String opcion = sc.next();
 
         switch (opcion) {
             case "a":
-                System.out.println("Ingrese el nombre del producto: ");
-                
+                try {
+                    System.out.println("Ingrese el nombre del producto: ");
+                    String nombre = sc.next();
+                    System.out.println("Ingrese el valor del producto: ");
+                    Double valor = Double.parseDouble(sc.next());
+                    if (!nombre.isEmpty() && !valor.isNaN()){
+                        productos.add(new Producto(nombre, valor));
+                        System.out.println("Producto añadido correctamente");
+                        return productos;
+                    }else {
+                        System.out.println("Ingrese los datos correctamente");
+                        return productos;
+                    }
+
+                }catch (Exception e) {
+                    System.out.println("Por favor ingresa un valor correcto");
+                }
                 return productos;
             case "b":
+                try {
+                    System.out.println("Ingrese el nombre del producto a eliminar: ");
+                    String nombre = sc.next();
+                    if (!nombre.isEmpty()) {
+                        productos.removeIf(p -> p.getNombre().equals(nombre));
+                        return productos;
+                    }else {
+                        throw new Exception();
+                    }
+                }catch (Exception e) {
+                    System.out.println("Por favor ingresa un valor correcto");
+                }
 
                 return productos;
             case "c":

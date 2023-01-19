@@ -27,7 +27,7 @@ public class MainEjercicio2 {
             System.out.println("***********************************************");
             System.out.println("Ingrese una opción: ");
 
-            String opcion = sc.nextLine();
+            String opcion = sc.next();
 
             switch (opcion) {
                 case "a":
@@ -52,7 +52,7 @@ public class MainEjercicio2 {
                                     " cédula: " + clientes.get(i).getCedula());
                         }
                         System.out.println("Ingrese el número de la cédula que desea borrar");
-                        Integer valor = Integer.parseInt(sc.nextLine());
+                        Integer valor = Integer.parseInt(sc.next());
                         Integer tamaño = clientes.size();
                         for (ClienteEj2 c : clientes) {
                             if (c.getCedula() == valor) {
@@ -73,7 +73,7 @@ public class MainEjercicio2 {
                 case "c":
                     try{
                         System.out.println("Ingrese el número de cedula del cliente a buscar: ");
-                        Integer valor = Integer.parseInt(sc.nextLine());
+                        Integer valor = Integer.parseInt(sc.next());
 
                         for (int i = 0; i < clientes.size(); i++) {
                             if (clientes.get(i).getCedula() == valor) {

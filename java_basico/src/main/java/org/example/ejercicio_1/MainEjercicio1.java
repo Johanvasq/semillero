@@ -28,7 +28,7 @@ public class MainEjercicio1 {
             System.out.println("***********************************************");
             System.out.println("Ingrese una opción: ");
 
-            String opcion = sc.nextLine();
+            String opcion = sc.next();
 
             switch (opcion) {
                 case "a":

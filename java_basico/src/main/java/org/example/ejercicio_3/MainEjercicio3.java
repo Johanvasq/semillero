@@ -14,6 +14,8 @@ public class MainEjercicio3 {
         clientes.add(new ClienteEj3("Juan", 15));
         clientes.add(new ClienteEj3("Adrian", 80));
 
+        ArrayList<Producto> productos = new ArrayList<>();
+        productos.add(new Producto("Jabon", 1590.10));
 
         Scanner sc = new Scanner(System.in);
 
@@ -28,14 +30,15 @@ public class MainEjercicio3 {
             System.out.println("***********************************************");
             System.out.println("Ingrese una opción: ");
 
-            String opcion = sc.nextLine();
+            String opcion = sc.next();
 
             switch (opcion) {
                 case "a":
-                    clientes = MenuCliente.menuCliente(clientes);
+                    clientes = MenuCliente.menuCliente(clientes, productos);
                     break;
 
                 case "b":
+                    productos = MenuProducto.menuProducto(productos);
 
 
                     break;
